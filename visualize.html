@@ -28,7 +28,7 @@
 var result_t = document.getElementById("result");
 
 // ソケット通信先の定義
-var socketio = io.connect('http://localhost:8080');
+var socketio = io.connect("http://" + location.host || "http://localhost:8080");
 
 
 //イベント定義

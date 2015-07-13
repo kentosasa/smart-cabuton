@@ -61,7 +61,7 @@ function dataChange(){
 
 
 // socket定義
-var socketio = io.connect('http://localhost:8080');
+var socketio = io.connect("http://" + location.host || "http://localhost:8080");
 
 // イベント定義
 socketio.on("disconnect", function(){});
