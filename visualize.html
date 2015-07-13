@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" type="text/css" href="css/mycss.css">
+  <!--  <link rel="stylesheet" type="text/css" href="css/mycss.css"> -->
 </head>
 <body>
   <div id="d1">
@@ -16,7 +16,7 @@
       <div id="d3"></div>
      </div>
   </div>
-  <p>Ω21の空席情報</p>
+  <p>Ω12の空席情報</p>
   <div id="contents" class="container"></div>
 
   <script src="/socket.io/socket.io.js"></script>
@@ -68,7 +68,9 @@ p {
   margin: 100px 0px 100px 0px;
 	text-align: center;
 }
-
+#contents{
+  overflow: auto;
+  }
 
 .item {
 	text-align: center;
@@ -97,7 +99,6 @@ html,
 body {margin:0; width:100%; height:100%;}
 
 body {
-overflow:hidden;
 background:#000;
 	-webkit-perspective:300;
 	-moz-perspective:300;
