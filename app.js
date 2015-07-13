@@ -17,7 +17,7 @@ var server = require("http").createServer(function(req, res) {
   };
   //output先の決定
   res.end(output);
-}).listen(8080);
+}).listen(process.env.PORT || 8080);
 
 //socketの設定
 var io = require("socket.io").listen(server);
