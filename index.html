@@ -1,0 +1,82 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+</head>
+<body>
+  <h1 id = "sensor_id">ID</h1>
+  <h1 id = "light" >Hello World</h1>
+  <h1 id = "proximity" >Hello World</h1>
+  <h1 id = "result" ></h1>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+
+//Sensorの利用
+window.addEventListener("load", function() {
+  console.log("Hello World!");
+});
+//sensor初期値
+var light = 100;
+var proximity = 0;
+//変数宣言
+var light_t = document.getElementById("light");
+var proximity_t = document.getElementById("proximity");
+var result_t = document.getElementById("result");
+var my_id = Math.floor(Math.random() * 9999);
+var sensor_id = document.getElementById("sensor_id");
+
+// IDの表示
+sensor_id.textContent ="ID: " + my_id;
+
+//SensroEvent定義
+window.addEventListener("load", function(){
+  window.addEventListener("devicelight", function(event){
+    light = event.value;
+    dataChange();
+  });
+  window.addEventListener("deviceproximity",function(event){
+    proximity = event.value;
+    dataChange();
+  });
+});
+
+
+//値の変化を定義
+function dataChange(){
+  light_t.textContent="照度: " + light;
+  proximity_t.textContent="近接: " + proximity;
+  var sitting = false;
+  if(light < 50 && proximity < 2){
+    result_t.textContent = "座ってる";
+    sitting = true;
+  }else{
+    result_t.textContent = "座ってない";
+    sitting = false;
+  }
+  sendData(sitting, my_id);
+};
+
+
+
+
+// socket定義
+var socketio = io.connect('http://localhost:8080');
+
+// イベント定義
+socketio.on("disconnect", function(){});
+
+
+function start(id) {
+  socketio.emit("connected", id);
+}
+
+function sendData(sensor, id) {
+  socketio.emit("sendData", {sensor: sensor, id: id});
+}
+
+// 3.開始処理
+start(my_id);
+  </script>
+</body>
+</html>
