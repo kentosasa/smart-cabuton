@@ -32,16 +32,20 @@ io.sockets.on("connection", function (socket) {
   // 接続開始カスタムイベント(接続元ユーザを保存し、他ユーザへ通知)
   socket.on("connected", function (id) {
     console.log("will connect");
-    userHash[socket.id] = id;
-    console.log("connect");
+    if(0 < id  && id < 10000){
+     userHash[socket.id] = id;
+    }
+   console.log("connect");
   });
 
 
   //sendDataが呼ばれとき
   socket.on("sendData", function (data) {
-    //値を取得
+    if(0 < data.id && data.id < 10000 && userHash[socket.id] == data.id){
+     //値を取得
     userHash[socket.sensor] = data.sensor;
     io.sockets.emit("receiveData", {sensor: data.sensor, id: data.id});
+    }
   });
 
 
