@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Index</title>
+  <title>Sensor</title>
 </head>
 <body>
   <h1 id = "sensor_id">ID</h1>
@@ -44,6 +44,7 @@ window.addEventListener("load", function(){
 
 //値の変化を定義
 function dataChange(){
+  console.log("call dataChange");
   light_t.textContent="照度: " + light;
   proximity_t.textContent="近接: " + proximity;
   var sitting = false;
@@ -69,6 +70,7 @@ socketio.on("disconnect", function(){});
 
 function start(id) {
   socketio.emit("connected", id);
+  setTimeout("dataChange()", 3000);
 }
 
 function sendData(sensor, id) {
