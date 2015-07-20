@@ -26,6 +26,13 @@ var result_t = document.getElementById("result");
 var my_id = Math.floor(Math.random() * 9999);
 var sensor_id = document.getElementById("sensor_id");
 
+
+//IDの指定
+var n = parseInt(location.hash.substring(1));
+if(1<= n && n <= 9999){
+  my_id = n;
+} 
+
 // IDの表示
 sensor_id.textContent ="ID: " + my_id;
 

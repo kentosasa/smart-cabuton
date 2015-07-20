@@ -16,6 +16,10 @@
       <div id="d3"></div>
      </div>
   </div>
+  <p>メディア1階</p>
+  <div id="media1" class="container"></div>
+  <p>メディア2階</p>
+  <div id="media2" class="container"></div>
   <p>Ω12の空席情報</p>
   <div id="contents" class="container"></div>
 
@@ -40,7 +44,13 @@ socketio.on("removeData", function(data){ removeData(data)});
 function receiveData(data){
   var item;
   if( document.getElementById(data.id) == null){
-    $("#contents").append( '<div class="item col-xs-4" id=' + data.id + ">" + data.id + "初期値" + "</div>");
+    if(data.id == 1 ){
+      $("#media1").append( '<div class="item col-xs-12" id=' + data.id + ">" + data.id + "初期値" + "</div>");
+    }else if(data.id == 2){
+       $("#media2").append( '<div class="item col-xs-12" id=' + data.id + ">" + data.id + "初期値" + "</div>"); 
+    }else{
+     $("#contents").append( '<div class="item col-xs-4" id=' + data.id + ">" + data.id + "初期値" + "</div>");
+   }
   }
   item = document.getElementById(data.id);
 

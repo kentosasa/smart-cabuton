@@ -12,7 +12,7 @@ var server = require("http").createServer(function(req, res) {
      output = fs.readFileSync("./img/true.png", "binary");
   }else if(req.url == "/img/false.png"){
     output = fs.readFileSync(".img/false.png", "binary");
-  }else if(req.url == "/sensor.html"){
+  }else if(req.url == "/smart-zabuton.html"){
     output = fs.readFileSync("./sensor.html", "utf-8");
   }else{
     output = fs.readFileSync("./visualize.html", "utf-8");
